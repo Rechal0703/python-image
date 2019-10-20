@@ -1,0 +1,19 @@
+import os
+
+
+path_input = '/home/fmr/FMR/SLAM/data/BuildData/unreal_hr_02' 
+path_output = '/home/fmr/FMR/SLAM/data/BuildData/rgb'
+
+filelist = os.listdir(path_input)
+
+j = 0
+
+for i in filelist:
+    if i.endswith('.png'):
+        src = os.path.join(os.path.abspath(path_input), i)
+        name = i.split('.')[0]
+        name = name.split('t')[1]
+        #dst = os.path.join(os.path.abspath(path_output), format(str(j), '0>s')+'_labels' + '.png')
+        dst = os.path.join(os.path.abspath(path_output),os.path.join(path_output, '%05d' % int(name) + ".png"))
+        os.rename(src, dst)
+        j += 1
